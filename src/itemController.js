@@ -35,7 +35,7 @@ function displayOptions(wishlist, sampleCart) {
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     blue("Your Current Shopping List");
                     display(wishlist);
-                    blue("Your Sample Shopping Shopping Cart");
+                    blue("Your Sample Shopping Cart");
                     display(sampleCart);
                     log(`Current Total: $${total/100}`);
                 } else {
@@ -44,7 +44,7 @@ function displayOptions(wishlist, sampleCart) {
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     blue("Your Current Shopping List");
                     display(wishlist);
-                    blue("Your Sample Shopping Shopping Cart");
+                    blue("Your Sample Shopping Cart");
                     display(sampleCart);
                     log(`Current Total: $${total/100}`);
                 }
@@ -60,13 +60,13 @@ function displayOptions(wishlist, sampleCart) {
             } else {
                 if (answer2.value === "All"){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    blue("Your Sample Shopping Shopping Cart");
+                    blue("Your Sample Shopping Cart");
                     display(sampleCart);
                     log(`Current Total: $${total/100}`);
                 } else {
                     sampleCart = sampleCart.filter(x => x.category === answer2.value);
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    blue("Your Sample Shopping Shopping Cart");
+                    blue("Your Sample Shopping Cart");
                     display(sampleCart);
                     log(`Current Total: $${total/100}`);
                 }
@@ -296,7 +296,7 @@ function enqueue(wishlist, sampleCart){
             .then((answer) => {
                 if (answer.newItem === "Please select a gift below"){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    blue("Your Sample Shopping Shopping Cart")
+                    blue("Your Sample Shopping Cart")
                     display(sampleCart);
                     log(`Current Total: $${total/100}`)
                     endl();
@@ -317,7 +317,7 @@ function enqueue(wishlist, sampleCart){
                     sampleCart[index].priceInCents += newItem.priceInCents;
                 }
                 writeJSONFile("data", "sampleCart.json", sampleCart);
-                blue("Your Sample Shopping Shopping Cart")
+                blue("Your Sample Shopping Cart")
                 const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                 display(sampleCart);
                 log(`Current Total: $${total/100}`)
@@ -334,7 +334,7 @@ function dequeue(sampleCart){
         {
             type: "list",
             name: "badItem",
-            message: "Which item would you like to remove from Your Sample Shopping Shopping Cart?",
+            message: "Which item would you like to remove from Your Sample Shopping Cart?",
             choices
         }
     ];
@@ -343,7 +343,7 @@ function dequeue(sampleCart){
             .then((answer) => {
                 if (answer.badItem === "Please select a gift below"){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    blue("Your Sample Shopping Shopping Cart");
+                    blue("Your Sample Shopping Cart");
                     display(sampleCart);
                     log(`Current Total: $${total/100}`);
                     endl();
@@ -362,7 +362,7 @@ function dequeue(sampleCart){
                 writeJSONFile("data", "sampleCart.json", sampleCart);
 
                 const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                blue("Your Sample Shopping Shopping Cart");
+                blue("Your Sample Shopping Cart");
                 display(sampleCart);
                 log(`Current Total: $${total/100}`);
                 endl();
