@@ -82,7 +82,7 @@ This command line app is designed to help you with your shopping list this holid
 
 ## Editing items in your main shopping list
 
-To re-enter the **name**, **category**, **price** or **in stock** status of any particular item, select, `Edit Main Shopping List` from the main Menu:
+To re-enter the **name**, **category**, **price** or **in stock** status of any particular item, select, `Edit Main Shopping List` from the Main Menu:
 
 ```
  _ _                    _ _     _ _   _             _ 
