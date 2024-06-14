@@ -1,1 +1,30 @@
-[{"id":"W9EjcglRv","name":"MICROFIBER CLEANING CLOTHS","priceInCents":998,"category":"Automotive","inStock":true},{"id":"WWbHwqMlC","name":"NECKLACE ","priceInCents":999,"category":"Jewelry","inStock":true},{"id":"Wsx-6PaKq","name":"PLAYSTATION 5","priceInCents":49999,"category":"Electronics","inStock":"NO"}]
+[
+  {
+    "id": "W40oxAuHD",
+    "name": "COFFEE MUG",
+    "priceInCents": 599,
+    "category": "Other",
+    "inStock": true
+  },
+  {
+    "id": "WzUAL5GlG",
+    "name": "HARRY POTTER",
+    "priceInCents": 1299,
+    "category": "Books",
+    "inStock": true
+  },
+  {
+    "id": "WIU4dZqMF",
+    "name": "PLAYSTATION 5",
+    "priceInCents": 44999,
+    "category": "Electronics",
+    "inStock": false
+  },
+  {
+    "id": "W1hLjlSXN",
+    "name": "GOLD NECKLACE",
+    "priceInCents": 18375,
+    "category": "Jewelry",
+    "inStock": true
+  }
+]

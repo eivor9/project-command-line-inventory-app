@@ -1,13 +1,79 @@
 const log = console.log;
 const endl = () => console.log();
 const { nanoid } = require("nanoid");
-const { print } = require("lolcats");
 const chalk = require("chalk");
 const inquirer = require('inquirer');
 const { writeJSONFile } = require("./helpers")
 
 const red = chalk.rgb(255, 0, 0);
 const green = chalk.rgb(0, 255, 0);
+const blue = (s) => log(chalk.rgb(0, 0, 255)(s));
+
+function displayOptions(wishlist, sampleCart) {
+
+    const question1 = {
+            type: "list",
+            name: "value",
+            message: "Which list would you like to see?",
+            choices: ["Both", "Main Shopping List", "Sample Shopping Cart"]
+    };
+
+    inquirer.prompt(question1)
+    .then((answer1) => {
+
+        const question2 = {
+                type: "list",
+                name: "value",
+                message: "Which category would you like to see?",
+                choices: ["All", "Electronics", "Automotive", "Jewelry", "Books", "Other"]
+        };
+    
+        inquirer.prompt(question2)
+        .then((answer2) => {
+            if (answer1.value === "Both"){
+                if (answer2.value === "All"){
+                    const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
+                    blue("Your Current Shopping List");
+                    display(wishlist);
+                    blue("Your Sample Shopping Shopping Cart");
+                    display(sampleCart);
+                    log(`Current Total: $${total/100}`);
+                } else {
+                    wishlist = wishlist.filter(x => x.category === answer2.value);
+                    sampleCart = sampleCart.filter(x => x.category === answer2.value);
+                    const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
+                    blue("Your Current Shopping List");
+                    display(wishlist);
+                    blue("Your Sample Shopping Shopping Cart");
+                    display(sampleCart);
+                    log(`Current Total: $${total/100}`);
+                }
+            } else if (answer1.value === "Main Shopping List"){
+                if (answer2.value === "All"){
+                    blue("Your Current Shopping List");
+                    display(wishlist);
+                } else {
+                    wishlist = wishlist.filter(x => x.category === answer2.value);
+                    blue("Your Current Shopping List");
+                    display(wishlist);
+                } 
+            } else {
+                if (answer2.value === "All"){
+                    const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
+                    blue("Your Sample Shopping Shopping Cart");
+                    display(sampleCart);
+                    log(`Current Total: $${total/100}`);
+                } else {
+                    sampleCart = sampleCart.filter(x => x.category === answer2.value);
+                    const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
+                    blue("Your Sample Shopping Shopping Cart");
+                    display(sampleCart);
+                    log(`Current Total: $${total/100}`);
+                }
+            }
+        })
+    })
+}
 
 function display(list) {
     if(!list.length) log(`  This list is empty`)
@@ -64,7 +130,7 @@ function add(wishlist){
                 writeJSONFile("data", "wishlist.json", wishlist);
             })
             .then(() => {
-                print("Your Current Wishlist\n")
+                blue("Your Current Shopping List\n")
                 display(wishlist);
             });
 }
@@ -85,9 +151,9 @@ function remove(wishlist){
     inquirer.prompt(question)
             .then((answer) => {
                 if (answer.newItem === "Please select a gift below"){
-                    print("Your Current Wishlist")
+                    blue("Your Current Shopping List")
                     display(wishlist);
-                    log(red("Valid gift not selected. No action taken..."))
+                    log(red("No valid gift selected. No action taken..."))
                     return;
                 }
                 const itemID = answer.newItem.substring(0,9);
@@ -96,7 +162,7 @@ function remove(wishlist){
                 wishlist.splice(index, 1);
 
                 writeJSONFile("data", "wishlist.json", wishlist);
-                print("Your Current Wishlist")
+                blue("Your Current Shopping List")
                 display(wishlist);
                 log(`${red(removedItem)} has been removed from your shopping list successfully...`);
             });
@@ -118,9 +184,9 @@ function edit(wishlist, sampleCart){
     inquirer.prompt(question)
             .then((answer) => {
                 if (answer.badItem === "Please select a gift below"){
-                    print("Your Current Wishlist")
+                    blue("Your Current Shopping List")
                     display(wishlist);
-                    log(red("Valid gift not selected. No action taken..."))
+                    log(red("No valid gift selected. No action taken..."))
                     return;
                 }
                 const itemID = answer.badItem.substring(0,9);
@@ -132,7 +198,7 @@ function edit(wishlist, sampleCart){
                         type: "list",
                         name: "key",
                         message: "Which property would you like to edit?",
-                        choices: Object.keys(badItem)
+                        choices: Object.keys(badItem).slice(1)
                     }
                 ];
 
@@ -175,7 +241,7 @@ function edit(wishlist, sampleCart){
                                 }
                                 break;
                             default:
-                                print("Your Current Wishlist\n");
+                                blue("Your Current Shopping List\n");
                                 display(wishlist);
                                 log(red("Item id's have ben randomely selected and may not be edited...\nNo action taken..."))
                                 return;
@@ -203,7 +269,7 @@ function edit(wishlist, sampleCart){
                                 }
                                 writeJSONFile("data", "sampleCart.json", sampleCart);
                                 writeJSONFile("data", "wishlist.json", wishlist);
-                                print("Your Current Wishlist\n");
+                                blue("Your Current Shopping List\n");
                                 display(wishlist);
 
                                 log(`${green(badItem.name)} has been updated successfully...`)
@@ -230,11 +296,11 @@ function enqueue(wishlist, sampleCart){
             .then((answer) => {
                 if (answer.newItem === "Please select a gift below"){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    print("Your Sample Cart")
+                    blue("Your Sample Shopping Shopping Cart")
                     display(sampleCart);
                     log(`Current Total: $${total/100}`)
                     endl();
-                    log(red("Valid gift not selected. No action taken..."))
+                    log(red("No valid gift selected. No action taken..."))
                     return;
                 }
                 const itemID = answer.newItem.substring(0,9);
@@ -251,7 +317,7 @@ function enqueue(wishlist, sampleCart){
                     sampleCart[index].priceInCents += newItem.priceInCents;
                 }
                 writeJSONFile("data", "sampleCart.json", sampleCart);
-                print("Your Sample Cart")
+                blue("Your Sample Shopping Shopping Cart")
                 const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                 display(sampleCart);
                 log(`Current Total: $${total/100}`)
@@ -268,7 +334,7 @@ function dequeue(sampleCart){
         {
             type: "list",
             name: "badItem",
-            message: "Which item would you like to remove from your sample cart?",
+            message: "Which item would you like to remove from Your Sample Shopping Shopping Cart?",
             choices
         }
     ];
@@ -277,11 +343,11 @@ function dequeue(sampleCart){
             .then((answer) => {
                 if (answer.badItem === "Please select a gift below"){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    print("Your Sample Cart");
+                    blue("Your Sample Shopping Shopping Cart");
                     display(sampleCart);
                     log(`Current Total: $${total/100}`);
                     endl();
-                    log(red("Valid gift not selected. No action taken..."))
+                    log(red("No valid gift selected. No action taken..."))
                     return;
                 }
                 
@@ -296,7 +362,7 @@ function dequeue(sampleCart){
                 writeJSONFile("data", "sampleCart.json", sampleCart);
 
                 const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                print("Your Sample Cart");
+                blue("Your Sample Shopping Shopping Cart");
                 display(sampleCart);
                 log(`Current Total: $${total/100}`);
                 endl();
@@ -305,4 +371,4 @@ function dequeue(sampleCart){
             });
 }
 
-module.exports = { display, add, remove, edit, enqueue, dequeue };
+module.exports = { display, displayOptions, add, remove, edit, enqueue, dequeue };

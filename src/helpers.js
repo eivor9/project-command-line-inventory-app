@@ -6,7 +6,7 @@ function readJSONFile(path, fileName) {
 }
 
 function writeJSONFile(path, fileName, data) {
-  data = JSON.stringify(data);
+  data = JSON.stringify(data, 0, 2);
   return writeFileSync(`${path}/${fileName}`, data, { encoding: "utf-8" });
 }
 
