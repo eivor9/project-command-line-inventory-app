@@ -2,10 +2,10 @@
 
 # Holiday Shopping List Companion (CLI)
 
-This command line app is designed to help you with your shopping list this holiday season! Use it to organize your shopping list by category and to keep track of how much any comnination of items cost at once.
+This command line app is designed to help you with your shopping list this holiday season! Use it to organize your shopping list by category and to keep track of how much any particular comnination of items may cost at once.
 
 **Noteworthy features:**
-- Adding items to shopping list full of gifts
+- Adding items a to shopping list full of gifts
 - Adding items to a seperate theoretical shopping cart for gauging the total price of any combination of items
 - Removing items from either list
 
@@ -58,7 +58,7 @@ This command line app is designed to help you with your shopping list this holid
   
 ```
 
-*Gifts must be present in your `Main Shopping List` before being added into your `Sample Shopping Cart`*
+*Gifts must be present in your `Main Shopping List` in order be added to your `Sample Shopping Cart`*
 
 
 ## Removing items from your shopping lists
@@ -80,7 +80,7 @@ This command line app is designed to help you with your shopping list this holid
   
 ```
 
-## Editing items in your main shopping list
+## Editing items in your Main Shopping List
 
 To re-enter the **name**, **category**, **price** or **in stock** status of any particular item, select, `Edit Main Shopping List` from the Main Menu:
 
