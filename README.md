@@ -22,7 +22,7 @@ This command line app is designed to help you with your shopping list this holid
 
 ## Displaying your shopping lists:
 
-**To display the items on either shopping list, select `Show Shopping Lists` from the Main Menu:**
+**To display the items on either shopping list, select `Display Shopping List` from the Main Menu:**
 
 ```
  _ _                    _ _     _ _   _             _ 
@@ -31,7 +31,7 @@ This command line app is designed to help you with your shopping list this holid
 |_|_<___|  _/  _/`_. | |_|_\___/_|_\___<___|`_. /__<_>
         |_| |_|  <___'                      <___'     
 ? What would you like to do? (Use arrow keys)
-❯ Show Shopping Lists
+❯ Display Shopping List
   Add to Shopping List 
   Remove from Shopping List 
   Edit Main Shopping List 

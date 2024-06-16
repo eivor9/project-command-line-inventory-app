@@ -305,7 +305,9 @@ function edit(wishlist, sampleCart){
                                     if (key === "name") 
                                         badItem[key] = newValue.toUpperCase() || "Unknown";
                                     else if (key === "priceInCents") 
-                                        badItem[key] = newValue || 0;
+                                        badItem[key] = Number(newValue) || 0;
+                                    else if (key === "inStock")
+                                        badItem[key] = newValue === "YES" ? true : false;
                                     else
                                         badItem[key] = newValue
 
@@ -316,6 +318,7 @@ function edit(wishlist, sampleCart){
 
                                     for (const item of sampleCart){
                                         [item.name, item.category, item.priceInCents, item.inStock] = updatedList[item.id];
+                                        //item.priceInCents *= item.quantity;
                                     }
                                     writeJSONFile("data", "sampleCart.json", sampleCart);
                                     writeJSONFile("data", "wishlist.json", wishlist);
@@ -373,7 +376,7 @@ function enqueue(wishlist, sampleCart){
                     
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     display(sampleCart);
-                    log(blue(` Current Total: $${total/100}\n`))
+                    log(blue(` Current Total: $${total/100}`))
                     log(`${green(newItem.name)} has been added to your cart successfully...`)
                     endl();
                 }
@@ -383,7 +386,7 @@ function enqueue(wishlist, sampleCart){
 }
 
 function dequeue(sampleCart){
-    const choices = sampleCart.map(item => `${item.id} - ${item.name} (${item.quantity}): $${item.priceInCents/100}`);
+    const choices = sampleCart.map(item => `${item.id} - ${item.name} (${item.quantity}) - $${item.priceInCents/100}`);
     choices.unshift("Please select a gift below");
 
     const question = [
@@ -419,10 +422,11 @@ function dequeue(sampleCart){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     
                     display(sampleCart);
-                    log(blue(` Current Total: $${total/100}\n`));
+                    log(blue(` Current Total: $${total/100}`));
+                    log(`${red(badItem.name)} has been successfully removed from your shopping cart...`)
+                    if (badItem.quantity)
+                        log(`Remaining Quantity: ${badItem.quantity}`);
                     endl();
-                    log(`${red(badItem.name)} has been successfully removed from your cart...`)
-                    log(`Remaining Quantity: ${badItem.quantity}`);
                 }
                 mainLoop();
             });

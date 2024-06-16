@@ -9,7 +9,7 @@ const question1 = {
         type:"list",
         name:"value", 
         message: "What would you like to do?",
-        choices: ["Show Shopping Lists", "Add to Shopping List", "Remove from Shopping List", "Edit Main Shopping List", "Exit"]
+        choices: ["Display Shopping List", "Add to Shopping List", "Remove from Shopping List", "Edit Main Shopping List", "Exit"]
     }
 
 ask = (firstLaunch) => {
@@ -18,7 +18,7 @@ ask = (firstLaunch) => {
 
     inquirer.prompt(question1)
     .then((answer1) => {
-        if (answer1.value === "Show Shopping Lists"){
+        if (answer1.value === "Display Shopping List"){
             displayOptions(wishlist, sampleCart);
         } else if (answer1.value === "Add to Shopping List"){
             const questionA = {
@@ -38,7 +38,7 @@ ask = (firstLaunch) => {
             const questionB = {
                 type:"list",
                 name:"value", 
-                message: "Which shopping list would you like remove from?",
+                message: "Which shopping list would you like to remove from?",
                 choices: ["Main Shopping List", "Sample Shopping Cart"]
             };
             inquirer.prompt(questionB).then(answerB => {
