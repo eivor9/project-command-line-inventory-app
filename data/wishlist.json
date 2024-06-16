@@ -18,7 +18,7 @@
     "name": "PLAYSTATION 5",
     "priceInCents": 44999,
     "category": "Electronics",
-    "inStock": false
+    "inStock": "NO"
   },
   {
     "id": "W1hLjlSXN",

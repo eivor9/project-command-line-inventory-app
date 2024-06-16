@@ -2,12 +2,12 @@
 
 # Holiday Shopping List Companion (CLI)
 
-This command line app is designed to help you with your shopping list this holiday season! Use it to organize your shopping list by category and to keep track of how much any particular comnination of items may cost at once.
+This command line app is designed to help you with your shopping list this holiday season. Use it to organize potential gifts, keep track of availability, and double check pricing!
 
 **Noteworthy features:**
-- Adding items a to shopping list full of gifts
-- Adding items to a seperate theoretical shopping cart for gauging the total price of any combination of items
-- Removing items from either list
+- Adding and removing gifts to a Main Shopping List
+- Adding and removing gifts to a Sample Shopping Cart
+- Displaying either list
 
 ## How to get started
 
@@ -20,9 +20,9 @@ This command line app is designed to help you with your shopping list this holid
 
    - `npm start`
 
-## Displaying items in your shopping lists:
+## Displaying your shopping lists:
 
-**To display the items in either shopping list, select `Show Shopping Lists` from the Main Menu:**
+**To display the items on either shopping list, select `Show Shopping Lists` from the Main Menu:**
 
 ```
  _ _                    _ _     _ _   _             _ 
@@ -39,9 +39,9 @@ This command line app is designed to help you with your shopping list this holid
 
 ```
 
-## Adding items to your shopping lists
+## Adding to your shopping lists:
 
-**To add an item to either shopping list, select `Add to Shopping List` from the Main Menu:**
+**To put a new gift on either shopping list, select `Add to Shopping List` from the Main Menu:**
 
 ```
  _ _                    _ _     _ _   _             _ 
@@ -58,12 +58,12 @@ This command line app is designed to help you with your shopping list this holid
   
 ```
 
-*Gifts must be present in your `Main Shopping List` in order be added to your `Sample Shopping Cart`*
+*Gifts must be on your `Main Shopping List` in order be added to your `Sample Shopping Cart`*
 
 
-## Removing items from your shopping lists
+## Removing from your shopping lists:
 
-**To remove an item from either shopping list, select `Remove from Shopping List` from the Main Menu:**
+**To remove a gift from either shopping list, select `Remove from Shopping List` from the Main Menu:**
 
 ```
  _ _                    _ _     _ _   _             _ 
@@ -80,9 +80,9 @@ This command line app is designed to help you with your shopping list this holid
   
 ```
 
-## Editing items in your Main Shopping List
+## Editing an item on your Main Shopping List:
 
-To re-enter the **name**, **category**, **price** or **in stock** status of any particular item, select, `Edit Main Shopping List` from the Main Menu:
+To re-enter the **name**, **category**, **price** or **in stock** status of any particular item, select `Edit Main Shopping List` from the Main Menu:
 
 ```
  _ _                    _ _     _ _   _             _ 
@@ -99,4 +99,4 @@ To re-enter the **name**, **category**, **price** or **in stock** status of any 
   
 ```
 
-*changes made to your `Main Shopping List` will also be reflected in your `Sample Shopping Cart`*
+*Changes made to your `Main Shopping List` will also be reflected in your `Sample Shopping Cart`*

@@ -1,43 +1,7 @@
 const { displayOptions, add, remove, edit, enqueue, dequeue } = require("./src/itemController");
 const { readJSONFile } = require("./src/helpers");
-const chalk = require("chalk");
 const inquirer = require('inquirer');
-const figlet = require("figlet");
-
-const red = chalk.rgb(255, 0, 0);
-const green = chalk.rgb(0, 255, 0);
-
-let colorFns = [red, green];
-
-const candyCane = (...x) => {
-  let e = x.join(' ').split(' ');
-  let c = { counter: 0, limit: 1 };
-  let n = [];
-  e.forEach(u => {
-    let y = u.split('').map(j => {
-      let d = colorFns[c.counter](j);
-      if (c.counter >= c.limit) c.counter = 0;
-      else c.counter++;
-      return d;
-    });
-    n.push(y.join(''));
-  });
-
-  return n.join(' ');
-};
-
-const print = (...x) => {
-    console.log(
-        candyCane(
-            figlet.textSync(...x, {
-            font: "Dr Pepper",
-            horizontalLayout: "controlled smushing",
-            verticalLayout: "controlled smushing",
-            width: 60
-            })
-        )
-    );
-};
+const { print } = require("./src/asciiArt");
 
 const wishlist = readJSONFile("data", "wishlist.json");
 const sampleCart = readJSONFile("data", "sampleCart.json");
@@ -48,8 +12,9 @@ const question1 = {
         choices: ["Show Shopping Lists", "Add to Shopping List", "Remove from Shopping List", "Edit Main Shopping List", "Exit"]
     }
 
-function ask() {
-    print("Happy Holidays!");
+ask = (firstLaunch) => {
+    if(firstLaunch)
+        print("Happy Holidays!");
 
     inquirer.prompt(question1)
     .then((answer1) => {
@@ -73,7 +38,7 @@ function ask() {
             const questionB = {
                 type:"list",
                 name:"value", 
-                message: "Which shopping list would you like to add to?",
+                message: "Which shopping list would you like remove from?",
                 choices: ["Main Shopping List", "Sample Shopping Cart"]
             };
             inquirer.prompt(questionB).then(answerB => {
@@ -90,4 +55,14 @@ function ask() {
     
 }
 
-ask();
+ask(true);
+
+var Table = require('cli-table');
+var table = new Table({ head: ["", "Top Header 1", "Top Header 2"] });
+
+table.push(
+    { 'Left Header 1': ['Value Row 1 Col 1', 'Value Row 1 Col 2'] }
+  , { 'Left Header 2': ['Value Row 2 Col 1', 'Value Row 2 Col 2'] }
+);
+
+//console.log(table.toString());

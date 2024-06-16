@@ -9,6 +9,7 @@
   "author": "Nasheed Jeremiah",
   "license": "ISC",
   "dependencies": {
+    "cli-table": "^0.3.11",
     "figlet": "^1.7.0",
     "inquirer": "^8.2.6",
     "nanoid": "^3.3.7"
