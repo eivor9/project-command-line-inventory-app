@@ -8,7 +8,7 @@ const Table = require('cli-table');
 
 const red = chalk.rgb(255, 0, 0);
 const green = chalk.rgb(0, 255, 0);
-const blue = chalk.rgb(0, 0, 255);
+const blue = chalk.rgb(0, 128, 255);
 
 function displayOptions(wishlist, sampleCart) {
 
@@ -54,7 +54,7 @@ function displayOptions(wishlist, sampleCart) {
                         display(wishlist);
                         
                         display(sampleCart);
-                        log(`Current Total: $${total/100}\n`);
+                        log(blue(` Current Total: $${total/100}\n`));
                     } else {
                         wishlist = wishlist.filter(x => x.category === answer3.value);
                         sampleCart = sampleCart.filter(x => x.category === answer3.value);
@@ -63,7 +63,7 @@ function displayOptions(wishlist, sampleCart) {
                         display(wishlist);
                         
                         display(sampleCart);
-                        log(`Current Total: $${total/100}\n`);
+                        log(blue(` Current Total: $${total/100}\n`));
                     }
                 } else if (answer1.value === "Main Shopping List"){
                     if (answer3.value === "All"){
@@ -79,13 +79,13 @@ function displayOptions(wishlist, sampleCart) {
                         const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                         
                         display(sampleCart);
-                        log(`Current Total: $${total/100}\n`);
+                        log(blue(` Current Total: $${total/100}\n`));
                     } else {
                         sampleCart = sampleCart.filter(x => x.category === answer3.value);
                         const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                         
                         display(sampleCart);
-                        log(`Current Total: $${total/100}\n`);
+                        log(blue(` Current Total: $${total/100}\n`));
                     }
                 }
                 mainLoop();
@@ -95,11 +95,14 @@ function displayOptions(wishlist, sampleCart) {
 }
 
 function display(list) {
+    
+
     if(!list.length) 
-        log(`  This list is empty`)
+        log(`This Shopping List is empty...\n`)
+
     else{
-        const mainList = !list[0].quantity;
         const head = [];
+        const mainList = !list[0].quantity;
 
         if(mainList)
             head.push(
@@ -348,7 +351,7 @@ function enqueue(wishlist, sampleCart){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     
                     display(sampleCart);
-                    log(`Current Total: $${total/100}\n`)
+                    log(blue(` Current Total: $${total/100}\n`))
                     endl();
                     log(red("No valid gift selected. No action taken..."))
                     endl();
@@ -370,7 +373,7 @@ function enqueue(wishlist, sampleCart){
                     
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     display(sampleCart);
-                    log(`Current Total: $${total/100}\n`)
+                    log(blue(` Current Total: $${total/100}\n`))
                     log(`${green(newItem.name)} has been added to your cart successfully...`)
                     endl();
                 }
@@ -398,7 +401,7 @@ function dequeue(sampleCart){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     
                     display(sampleCart);
-                    log(`Current Total: $${total/100}\n`);
+                    log(blue(` Current Total: $${total/100}\n`));
                     endl();
                     log(red("No valid gift selected. No action taken..."))
                     endl();
@@ -416,7 +419,7 @@ function dequeue(sampleCart){
                     const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
                     
                     display(sampleCart);
-                    log(`Current Total: $${total/100}\n`);
+                    log(blue(` Current Total: $${total/100}\n`));
                     endl();
                     log(`${red(badItem.name)} has been successfully removed from your cart...`)
                     log(`Remaining Quantity: ${badItem.quantity}`);

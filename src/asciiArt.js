@@ -36,4 +36,4 @@ const print = (...x) => {
     );
 };
 
-module.exports = { print };
+module.exports = { print, candyCane };
