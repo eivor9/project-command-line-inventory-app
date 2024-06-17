@@ -5,8 +5,8 @@
 This command line app is designed to help you with your shopping list this holiday season. Use it to organize potential gifts, keep track of availability, and double check pricing!
 
 **Noteworthy features:**
-- Adding and removing gifts to a Main Shopping List
-- Adding and removing gifts to a Sample Shopping Cart
+- Adding and removing gifts from a Main Shopping List
+- Adding and removing gifts from a Sample Shopping Cart
 - Displaying either list
 
 ## How to get started
