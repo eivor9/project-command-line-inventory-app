@@ -2,13 +2,13 @@
   {
     "id": "W40oxAuHD",
     "name": "STATIONERY & STICKER GIFT SET",
-    "priceInCents": 2552,
+    "priceInCents": 5104,
     "category": "Other",
     "inStock": true
   },
   {
     "id": "WzUAL5GlG",
-    "name": "HARRY POTTER PAPERBACK BOX SET (BOOKS 1-3)",
+    "name": "HARRY POTTER HARDCOVER BOX SET (BOOKS 1-3)",
     "priceInCents": 3897,
     "category": "Books",
     "inStock": true
@@ -16,7 +16,7 @@
   {
     "id": "WIU4dZqMF",
     "name": "PLAYSTATION 5",
-    "priceInCents": 44999,
+    "priceInCents": 44998,
     "category": "Electronics",
     "inStock": false
   },
@@ -32,7 +32,6 @@
     "name": "STARBUCKS GIFT CARD",
     "priceInCents": 2716,
     "category": "Other",
-    "inStock": true,
-    "quantity": 1
+    "inStock": true
   }
 ]

@@ -1,7 +1,7 @@
 [
   {
     "id": "WzUAL5GlG",
-    "name": "HARRY POTTER PAPERBACK BOX SET (BOOKS 1-3)",
+    "name": "HARRY POTTER HARDCOVER BOX SET (BOOKS 1-3)",
     "priceInCents": 3897,
     "category": "Books",
     "inStock": true,
@@ -10,17 +10,17 @@
   {
     "id": "W40oxAuHD",
     "name": "STATIONERY & STICKER GIFT SET",
-    "priceInCents": 1276,
+    "priceInCents": 5104,
     "category": "Other",
     "inStock": true,
-    "quantity": 1
+    "quantity": 2
   },
   {
     "id": "WkmSIyp2q",
     "name": "STARBUCKS GIFT CARD",
-    "priceInCents": 5432,
+    "priceInCents": 2716,
     "category": "Other",
     "inStock": true,
-    "quantity": 2
+    "quantity": 3
   }
 ]

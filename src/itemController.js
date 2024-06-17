@@ -26,8 +26,7 @@ function displayOptions(wishlist, sampleCart) {
             type: "list",
             name: "value",
             message: `Show "in stock" items only?`,
-            choices: ["YES", "NO"],
-            default: "NO"
+            choices: ["YES", "NO"]
         };
 
         inquirer.prompt(question2)
@@ -187,8 +186,9 @@ function add(wishlist){
 }
 
 function remove(wishlist){
-    const choices = wishlist.map(item => `${item.id} - ${item.name}: $${item.priceInCents/100}`);
-    choices.unshift("Please select a gift below");
+    const cancelButton = red("Cancel");
+    const choices = wishlist.map(item => `${item.id} - ${item.name} - $${item.priceInCents/100}`);
+    choices.push(cancelButton);
 
     const question = [
         {
@@ -201,10 +201,8 @@ function remove(wishlist){
 
     inquirer.prompt(question)
     .then((answer) => {
-        if (answer.newItem === "Please select a gift below"){
-            
-            display(wishlist);
-            log(red("No valid gift selected. No action taken..."))
+        if (answer.newItem === cancelButton){
+            log(red("No gift selected. No action taken..."))
             endl();
         } else {
             const itemID = answer.newItem.substring(0,9);
@@ -223,8 +221,9 @@ function remove(wishlist){
 }
 
 function edit(wishlist, sampleCart){
-    const choices = wishlist.map(item => `${item.id} - ${item.name}: $${item.priceInCents/100}`);
-    choices.unshift("Please select a gift below");
+    const cancelButton = red("Cancel");
+    const choices = wishlist.map(item => `${item.id} - ${item.name} - $${item.priceInCents/100}`);
+    choices.push(cancelButton);
 
     const question = [
         {
@@ -237,10 +236,8 @@ function edit(wishlist, sampleCart){
 
     inquirer.prompt(question)
             .then((answer) => {
-                if (answer.badItem === "Please select a gift below"){
-                    
-                    display(wishlist);
-                    log(red("No valid gift selected. No action taken..."))
+                if (answer.badItem === cancelButton){
+                    log(red("No gift selected. No action taken..."))
                     endl();
                     mainLoop();
                 } else {
@@ -336,8 +333,9 @@ function edit(wishlist, sampleCart){
 }
 
 function enqueue(wishlist, sampleCart){
+    const cancelButton = red("Cancel");
     const choices = wishlist.map(item => `${item.id} - ${item.name}: $${item.priceInCents/100}`);
-    choices.unshift("Please select a gift below");
+    choices.push(cancelButton);
 
     const question = [
         {
@@ -350,13 +348,8 @@ function enqueue(wishlist, sampleCart){
 
     inquirer.prompt(question)
             .then((answer) => {
-                if (answer.newItem === "Please select a gift below"){
-                    const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    
-                    display(sampleCart);
-                    log(blue(` Current Total: $${total/100}\n`))
-                    endl();
-                    log(red("No valid gift selected. No action taken..."))
+                if (answer.newItem === cancelButton){
+                    log(red("No gift selected. No action taken..."))
                     endl();
                 } else {
                     const itemID = answer.newItem.substring(0,9);
@@ -386,8 +379,9 @@ function enqueue(wishlist, sampleCart){
 }
 
 function dequeue(sampleCart){
+    const cancelButton = red("Cancel");
     const choices = sampleCart.map(item => `${item.id} - ${item.name} (${item.quantity}) - $${item.priceInCents/100}`);
-    choices.unshift("Please select a gift below");
+    choices.push(cancelButton);
 
     const question = [
         {
@@ -400,20 +394,15 @@ function dequeue(sampleCart){
 
     inquirer.prompt(question)
             .then((answer) => {
-                if (answer.badItem === "Please select a gift below"){
-                    const total = sampleCart.reduce((total, item) => total += item.priceInCents, 0);
-                    
-                    display(sampleCart);
-                    log(blue(` Current Total: $${total/100}\n`));
-                    endl();
-                    log(red("No valid gift selected. No action taken..."))
+                if (answer.badItem === cancelButton){
+                    log(red("No gift selected. No action taken..."))
                     endl();
                 } else{
                     const itemID = answer.badItem.substring(0,9);
                     const index = sampleCart.findIndex(item => item.id === itemID);
                     
                     const badItem = sampleCart[index];
-                    badItem.priceInCents = badItem.priceInCents - (badItem.priceInCents / badItem.quantity);
+                    badItem.priceInCents -= badItem.priceInCents / badItem.quantity;
                     badItem.quantity--;
                     if(!badItem.quantity) sampleCart.splice(index, 1);
 
